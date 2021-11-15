@@ -11,6 +11,7 @@ import java.util.Date;
 import java.util.Objects;
 
 @Data
+@Entity
 @RequiredArgsConstructor
 @Table(name = "tbl_offer")
 public class Offers {
