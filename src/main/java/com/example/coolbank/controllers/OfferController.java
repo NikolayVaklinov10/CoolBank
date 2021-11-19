@@ -8,8 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Calendar;
-import java.util.Date;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -24,7 +23,7 @@ public class OfferController {
         try {
             return new ResponseEntity<>(offersRepository.save(offer), HttpStatus.CREATED);
         } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
 
@@ -32,7 +31,7 @@ public class OfferController {
     public ResponseEntity<List<Offers>> getAllOffers() {
         try {
             List<Offers> list = offersRepository.findAll();
-            if (list.isEmpty() || list.size() == 0) {
+            if (list.isEmpty()) {
                 return new ResponseEntity<List<Offers>>(HttpStatus.NO_CONTENT);
             }
             return new ResponseEntity<List<Offers>>(list, HttpStatus.OK);
@@ -72,29 +71,23 @@ public class OfferController {
         }
     }
 
-//    public void removeOldItems() {
-//        Calendar cal = Calendar.getInstance();
-//        cal.add(Calendar.DATE, -1);
-//        Date oneDay = new Date(cal.getTimeInMillis());
-//        offersRepository.removeOlderThan(oneDay);
-//
-//    }
-//
-//
-//
+
+
+
+
 //    @DeleteMapping("/offers/{id}")
 //    public ResponseEntity<HttpStatus> deleteExpiredOffer(@PathVariable Long id) {
 //        try {
 //            Optional<Offers> offer = offersRepository.findById(id);
 //            if(offer.isPresent()) {
-//                removeOldItems();
+//                offersRepository.removeOlderThan(offer.get().getCreatedAt());
 //            }
 //            return new ResponseEntity<HttpStatus>(HttpStatus.NO_CONTENT);
 //        } catch (Exception e) {
 //            return new ResponseEntity<HttpStatus>(HttpStatus.INTERNAL_SERVER_ERROR);
 //        }
 //    }
-//
+
 
 
 
