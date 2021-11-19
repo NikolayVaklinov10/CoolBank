@@ -30,6 +30,8 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
+import static org.assertj.core.api.BDDAssertions.then;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -50,8 +52,7 @@ public class OfferControllerTest {
     @BeforeEach
     public void setUp() {
         offers = Arrays.asList(
-                new Offers("XMas", 21, "New York"),
-                new Offers("New Year's Eve", 19, "Sidney"),
+
                 new Offers("Hanuka", 13, "Tel Aviv"),
                 new Offers("St Patrick's Day", 31, "Boston"),
                 new Offers("Easter", 23, "Orlando"),
@@ -70,6 +71,22 @@ public class OfferControllerTest {
                 .andExpect(status().isCreated());
 
     }
+
+    @Test
+    public void checkAnOffer() throws Exception {
+        // given
+        Offers offerTest = new Offers("Hanuka",14,"Tel Aviv");
+        // when
+        Offers result = offersRepository.save(offerTest);
+        // then
+        then(result.equals(true));
+
+
+
+
+    }
+
+
 
     public static String asJsonString(final Object obj) {
         try {
@@ -97,6 +114,24 @@ public class OfferControllerTest {
                 .accept(MediaType.APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isNoContent());
+    }
+
+    @Test
+    public void getSingleOffer() throws Exception {
+        mockMvc.perform( MockMvcRequestBuilders
+                .get("/offers/{id}", 0)
+                .accept(MediaType.APPLICATION_JSON))
+                .andDo(print())
+                .andExpect(status().isOk());
+             //   .andExpect(MockMvcResultMatchers.jsonPath("$.offers").value(1));
+    }
+
+    @Test
+    public void updateOffer() {
+    }
+
+    @Test
+    public void deleteOffer() {
     }
 
 

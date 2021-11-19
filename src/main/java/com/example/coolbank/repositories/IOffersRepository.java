@@ -16,8 +16,8 @@ public interface IOffersRepository extends JpaRepository<Offers, Long> {
 
 //    @Modifying
 //    @Transactional
-//    @Query(value = "DELETE FROM tbl_offer m WHERE m.created_at < :expiryDate")
-//    void removeOlderThan(@Param("created_at") Date expiryDate);
+//    @Query(value = "DELETE FROM TBL_OFFER o WHERE o.createdAt < :date")
+//    Date removeOlderThan(@Param("date") Date date);
 }
 
 

@@ -73,15 +73,11 @@ public class OfferController {
 
 
 
-
-
 //    @DeleteMapping("/offers/{id}")
 //    public ResponseEntity<HttpStatus> deleteExpiredOffer(@PathVariable Long id) {
 //        try {
 //            Optional<Offers> offer = offersRepository.findById(id);
-//            if(offer.isPresent()) {
-//                offersRepository.removeOlderThan(offer.get().getCreatedAt());
-//            }
+//            offer.ifPresent(offers -> offersRepository.removeOlderThan(offers.getCreatedAt()));
 //            return new ResponseEntity<HttpStatus>(HttpStatus.NO_CONTENT);
 //        } catch (Exception e) {
 //            return new ResponseEntity<HttpStatus>(HttpStatus.INTERNAL_SERVER_ERROR);

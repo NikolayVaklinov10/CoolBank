@@ -17,11 +17,11 @@ public class OffersService {
         this.iOffersRepository = iOffersRepository;
     }
 
-//    public void removeOlderThan() {
+//    public Date removeOlderThan() {
 //        Calendar cal = Calendar.getInstance();
 //        cal.add(Calendar.DATE, -1);
 //        Date oneDay = new Date(cal.getTimeInMillis());
-//            iOffersRepository.removeOlderThan(oneDay);
+//          return   iOffersRepository.removeOlderThan(oneDay);
 //
 //    }
 
