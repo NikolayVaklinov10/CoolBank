@@ -14,10 +14,10 @@ import java.util.Date;
 public interface IOffersRepository extends JpaRepository<Offers, Long> {
 
 
-//    @Modifying
-//    @Transactional
-//    @Query(value = "DELETE FROM Offers o WHERE o.createdAt < :date")
-//    Date removeOlderThan(@Param("date") Date date);
+    @Modifying
+    @Transactional
+    @Query(value = "DELETE FROM Offers o WHERE o.createdAt < :date")
+    Date removeOlderThan(@Param("date") Date date);
 }
 
 
