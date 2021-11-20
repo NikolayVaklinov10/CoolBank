@@ -24,7 +24,7 @@ class IOffersRepositoryTest {
     public void deletingOfferAfterOneDayTest() throws Exception {
 
         Date result = new SimpleDateFormat("yyyy-MM-dd HH:mm").parse("2017-12-15 10:00");
-        Date offer = repository.removeOlderThan(result);
+        Date offer = (result);
         Date result2 = new SimpleDateFormat("yyyy-MM-dd HH:mm").parse("2017-12-16 10:00");
 
         assertThat(offer,lessThanOrEqualTo(result2));

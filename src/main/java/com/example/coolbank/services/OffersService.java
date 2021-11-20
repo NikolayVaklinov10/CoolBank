@@ -25,11 +25,11 @@ public class OffersService {
         return iOffersRepository.findById(id);
     }
 
-    public Date removeOlderThan(Date createdAt) {
+    public void removeOlderOffer() {
         Calendar cal = Calendar.getInstance();
         cal.add(Calendar.DATE, -1);
         Date oneDay = new Date(cal.getTimeInMillis());
-        return   iOffersRepository.removeOlderThan(oneDay);
+        iOffersRepository.removeOlderThan(oneDay);
     }
 
 

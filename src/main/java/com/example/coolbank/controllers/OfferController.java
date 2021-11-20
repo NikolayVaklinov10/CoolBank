@@ -67,7 +67,7 @@ public class OfferController {
             Optional<Offers> offer = offersRepository.findById(id);
             if(offer.isPresent()) {
                 offersRepository.delete(offer.get());
-                offersService.removeOlderThan(offer.get().getCreatedAt());
+                offersService.removeOlderOffer();
             }
             return new ResponseEntity<HttpStatus>(HttpStatus.NO_CONTENT);
         } catch (Exception e) {
