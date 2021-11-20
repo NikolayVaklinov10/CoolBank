@@ -61,32 +61,34 @@ public class OfferController {
         }
     }
 
-//    @DeleteMapping("/offers/{id}")
-//    public ResponseEntity<HttpStatus> deleteOffer(@PathVariable Long id) {
-//        try {
-//            Optional<Offers> offer = offersRepository.findById(id);
-//            if(offer.isPresent()) {
-//                offersRepository.delete(offer.get());
-//            }
-//            return new ResponseEntity<HttpStatus>(HttpStatus.NO_CONTENT);
-//        } catch (Exception e) {
-//            return new ResponseEntity<HttpStatus>(HttpStatus.INTERNAL_SERVER_ERROR);
-//        }
-//    }
-
-
-
-
     @DeleteMapping("/offers/{id}")
-    public ResponseEntity<HttpStatus> deleteExpiredOffer(@PathVariable Long id) {
+    public ResponseEntity<HttpStatus> deleteOffer(@PathVariable Long id) {
         try {
-            Optional<Offers> offer = offersService.findById(id);
-            offer.ifPresent(offers -> offersService.removeOlderThan(offers.getCreatedAt()));
+            Optional<Offers> offer = offersRepository.findById(id);
+            if(offer.isPresent()) {
+                offersRepository.delete(offer.get());
+                offersService.removeOlderThan(offer.get().getCreatedAt());
+            }
             return new ResponseEntity<HttpStatus>(HttpStatus.NO_CONTENT);
         } catch (Exception e) {
             return new ResponseEntity<HttpStatus>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+
+
+
+//    @DeleteMapping("/offers/{id}")
+//    public ResponseEntity<HttpStatus> deleteExpiredOffer(@PathVariable Long id) {
+//        try {
+//            Optional<Offers> offer = offersService.findById(id);
+//            offer.ifPresent(offers -> offersService.removeOlderThan(offers.getCreatedAt()));
+//            offersRepository.delete(offer.get());
+//            return new ResponseEntity<HttpStatus>(HttpStatus.NO_CONTENT);
+//        } catch (Exception e) {
+//            return new ResponseEntity<HttpStatus>(HttpStatus.INTERNAL_SERVER_ERROR);
+//        }
+//    }
 
 
 
