@@ -76,8 +76,6 @@ public class OfferController {
     }
 
 
-
-
 //    @DeleteMapping("/offers/{id}")
 //    public ResponseEntity<HttpStatus> deleteExpiredOffer(@PathVariable Long id) {
 //        try {
